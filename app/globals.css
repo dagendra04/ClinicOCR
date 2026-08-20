@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────── */
+:root {
+  --brand-50:  #eff6ff;
+  --brand-100: #dbeafe;
+  --brand-500: #3b82f6;
+  --brand-600: #2563eb;
+  --brand-700: #1d4ed8;
+  --brand-900: #1e3a8a;
+  --surface:        #f8fafc;
+  --surface-card:   #ffffff;
+  --surface-muted:  #f1f5f9;
+  --surface-border: #e2e8f0;
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+}
+
+/* ─── Base Resets ───────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ─── Utility classes ────────────────────────────────────────────────────── */
+@layer components {
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl border border-surface-border shadow-card;
+  }
+  .card-hover {
+    @apply hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-brand-600 text-white px-4 py-2
+           rounded-xl font-medium text-sm hover:bg-brand-700 active:bg-brand-800
+           transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-surface-muted text-text-secondary px-4 py-2
+           rounded-xl font-medium text-sm hover:bg-surface-border
+           transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-text-secondary px-3 py-2
+           rounded-xl font-medium text-sm hover:bg-surface-muted
+           transition-colors duration-150;
+  }
+  .btn-danger {
+    @apply inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2
+           rounded-xl font-medium text-sm hover:bg-red-100
+           transition-colors duration-150;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full rounded-xl border border-surface-border bg-white px-4 py-2.5
+           text-sm text-text-primary placeholder:text-text-muted
+           focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500
+           transition-all duration-150;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-blue   { @apply badge bg-brand-100 text-brand-700; }
+  .badge-green  { @apply badge bg-green-100 text-green-700; }
+  .badge-yellow { @apply badge bg-yellow-100 text-yellow-700; }
+  .badge-red    { @apply badge bg-red-100 text-red-700; }
+  .badge-gray   { @apply badge bg-slate-100 text-slate-600; }
+
+  /* Section headers */
+  .section-title {
+    @apply text-lg font-semibold text-text-primary;
+  }
+  .section-subtitle {
+    @apply text-sm text-text-muted;
+  }
+
+  /* Skeleton loader */
+  .skeleton {
+    @apply animate-pulse bg-slate-200 rounded-xl;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-surface-border;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/40 focus-visible:ring-offset-2;
+  }
+}
+
+/* ─── Page transition ────────────────────────────────────────────────────── */
+main {
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Prose (for prescription text) ─────────────────────────────────────── */
+.prescription-text {
+  font-family: 'Georgia', serif;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+/* ─── OCR highlight ─────────────────────────────────────────────────────── */
+.ocr-uncertain {
+  background-color: #fef3c7;
+  border-bottom: 2px solid #f59e0b;
+  border-radius: 2px;
+  padding: 0 2px;
+}
